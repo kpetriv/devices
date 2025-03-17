@@ -68,6 +68,8 @@ dependencies {
     implementation(libs.kotlin.serialization)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.serialization.converter)
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
 
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.androidx.viewmodel)
