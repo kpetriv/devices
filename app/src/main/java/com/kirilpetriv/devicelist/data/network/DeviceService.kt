@@ -6,18 +6,18 @@ import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://hiring.iverify.io/"
 
 interface DeviceService {
 
-    @GET("device")
+    @POST("device")
     suspend fun getDevices(
         @Query("pageNumber") pageNumber: Int,
         @Query("pageSize") pageSize: Int = 60,
-    ): Page<DeviceDto>
+    ): List<DeviceDto>
 
     companion object {
         fun provide(): DeviceService {

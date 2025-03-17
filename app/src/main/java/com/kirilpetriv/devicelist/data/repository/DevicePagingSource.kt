@@ -12,7 +12,7 @@ class DevicePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Device> {
         val page = params.key ?: 1
         return try {
-            val data = service.getDevices(pageNumber = page).data.map { it.toModel() }
+            val data = service.getDevices(pageNumber = page).map { it.toModel() }
             LoadResult.Page(
                 data = data,
                 prevKey = if (page == 1) null else page - 1,

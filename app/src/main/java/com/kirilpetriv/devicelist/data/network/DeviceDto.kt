@@ -4,11 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Page<T>(
-    val data: List<T>,
-)
-
-@Serializable
 data class DeviceDto(
     @SerialName("accessCode")
     val accessCode: String,
