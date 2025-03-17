@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -25,9 +26,15 @@ interface DeviceService {
                 coerceInputValues = true
                 encodeDefaults = true
             }
+
             val jsonContentType: MediaType = "application/json".toMediaType()
             val retrofit: Retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .client(
+                    OkHttpClient.Builder()
+                        .addInterceptor(AuthInterceptor())
+                        .build()
+                )
                 .addConverterFactory(jsonConfig.asConverterFactory(contentType = jsonContentType))
                 .build()
 
