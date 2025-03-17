@@ -1,7 +1,7 @@
 package com.kirilpetriv.devicelist
 
 import android.app.Application
-import com.kirilpetriv.devicelist.di.deviceListModule
+import com.kirilpetriv.devicelist.di.deviceListAppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -13,7 +13,7 @@ class DeviceListApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@DeviceListApp)
-            modules(deviceListModule)
+            modules(deviceListAppModule)
         }
     }
 }

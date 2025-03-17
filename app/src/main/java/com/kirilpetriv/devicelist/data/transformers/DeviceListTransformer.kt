@@ -1,9 +1,9 @@
 package com.kirilpetriv.devicelist.data.transformers
 
 import com.kirilpetriv.devicelist.data.network.DeviceDto
-import com.kirilpetriv.devicelist.domain.DeviceList
+import com.kirilpetriv.devicelist.domain.Device
 
-fun DeviceDto.toModel() = DeviceList(
+fun DeviceDto.toModel() = Device(
     accessCode = accessCode,
     name = name,
     lastScanDate = lastScanDate

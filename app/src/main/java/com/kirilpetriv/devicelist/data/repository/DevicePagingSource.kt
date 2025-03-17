@@ -4,12 +4,12 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.kirilpetriv.devicelist.data.network.DeviceService
 import com.kirilpetriv.devicelist.data.transformers.toModel
-import com.kirilpetriv.devicelist.domain.DeviceList
+import com.kirilpetriv.devicelist.domain.Device
 
-class DeviceListPagingSource(
+class DevicePagingSource(
     private val service: DeviceService
-) : PagingSource<Int, DeviceList>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DeviceList> {
+) : PagingSource<Int, Device>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Device> {
         val page = params.key ?: 1
         return try {
             val data = service.getDevices(pageNumber = page).data.map { it.toModel() }
@@ -23,6 +23,6 @@ class DeviceListPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, DeviceList>): Int? =
+    override fun getRefreshKey(state: PagingState<Int, Device>): Int? =
         state.anchorPosition
 }

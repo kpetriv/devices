@@ -3,26 +3,26 @@ package com.kirilpetriv.devicelist.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.kirilpetriv.devicelist.common.DeviceListRepository
+import com.kirilpetriv.devicelist.common.DeviceRepository
 import com.kirilpetriv.devicelist.data.network.DeviceService
-import com.kirilpetriv.devicelist.domain.DeviceList
+import com.kirilpetriv.devicelist.domain.Device
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 
-class DeviceListRepositoryImpl(
+class DeviceRepositoryImpl(
     private val service: DeviceService,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) : DeviceListRepository {
-    override fun getPaged(): Flow<PagingData<DeviceList>> {
+) : DeviceRepository {
+    override fun getPaged(): Flow<PagingData<Device>> {
         return Pager(
             config = PagingConfig(
                 initialLoadSize = 20,
                 pageSize = 20,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { DeviceListPagingSource(service = service) }
+            pagingSourceFactory = { DevicePagingSource(service = service) }
         ).flow.flowOn(dispatcher)
     }
 }
