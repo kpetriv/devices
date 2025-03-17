@@ -15,7 +15,7 @@ interface DeviceService {
     @GET("device")
     suspend fun getDevices(
         @Query("pageNumber") pageNumber: Int,
-        @Query("pageSize") pageSize: Int,
+        @Query("pageSize") pageSize: Int = 60,
     ): Page<DeviceDto>
 
     companion object {
